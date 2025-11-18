@@ -88,51 +88,69 @@ url('/images/main.jpg') center/cover no-repeat;">
     </div>
 </section>
 
-<section class="d-flex">
-    <!-- <div>
-      <h4>Location</h4> -->
-      <div class="google-maps" style="width: 50%; height: 400px;"></div> 
-    <!-- </div> -->
-    <div>
-      <h4>Sushi Sapporo Authentic Sushi</h4>
-      <div class="d-flex">
-        <p>CLOSED NOW</p>
-        <p>Closes at 9:30 PM</p>
+<section class="container py-4">
+  <div class="row">
+    
+    <div class="col-md-7 mb-4">
+      <h3 class="fw-bold mb-3">Location</h3>
+
+      <div class="border rounded overflow-hidden" style="height: 360px;">
+        <div class="google-maps w-100 h-100"></div>
       </div>
-    <div class="d-flex">
-        <i class="fa-solid fa-location-dot"></i>
-        <p>Somewhere in Boston</p>
     </div>
-    <div class="d-flex">
-        <i class="fa-solid fa-phone"></i>
-        <p>012233445577</p>
-    </div>
-    <div>
-        <div class="d-flex">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <p>Pickup</p>
+
+    <div class="col-md-5">
+
+      <h3 class="fw-bold">Sushi Sapporo Authentic Sushi</h3>
+
+      <div class="d-flex align-items-center gap-2 mt-2">
+        <span class="badge bg-danger">CLOSED NOW</span>
+        <span class="text-muted">• Closes at 9:30 pm</span>
+      </div>
+
+      <div class="d-flex align-items-center mt-3">
+        <i class="fa-solid fa-location-dot me-2 text-secondary"></i>
+        <span>Somewhere in Boston</span>
+      </div>
+
+      <div class="d-flex align-items-center mt-2">
+        <i class="fa-solid fa-phone me-2 text-secondary"></i>
+        <span>012233445577</span>
+      </div>
+
+      <div class="d-flex mt-4">
+        <button class="btn btn-dark w-50 me-2 d-flex justify-content-center align-items-center">
+          <i class="fa-solid fa-bag-shopping me-2"></i> Pickup
+        </button>
+        <button class="btn btn-outline-dark w-50 d-flex justify-content-center align-items-center">
+          <i class="fa-solid fa-motorcycle me-2"></i> Delivery
+        </button>
+      </div>
+
+      <div class="mt-4 p-3 bg-light rounded">
+        <h5 class="fw-bold mb-3">Hours of Operation (Takeout)</h5>
+
+        <div class="d-flex justify-content-between">
+          <span>Monday – Sunday</span>
+          <span>11:00 AM – 10:00 PM</span>
         </div>
-        <div class="d-flex">
-            <i class="fa-solid fa-motorcycle"></i>
-            <p>Delivery</p>
-        </div>
+      </div>
+
     </div>
-    <div>
-        <h4>Hours of Operation</h4>
-        <div class="d-flex">
-            <p>Monday- Sunday</p>
-            <p>11:00 AM - 10:00 PM</p>
-        </div>
-    </div>
+
+  </div>
 </section>
-<footer>
-    <p>Sushi Sapporo Authentic Sushi &#174;</p>
-    <div>
-        <a href="#">Menu</a>
-        <a href="#">Terms and Conditions</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Cokkie Policy</a>
-    </div>
+
+<footer class="container mt-5 pt-4">
+  <h4 class="fw-normal mb-3">Sushi Sapporo Authentic Sushi®</h4>
+  <hr class="mb-4">
+
+  <div class="d-flex flex-wrap gap-3 mb-4">
+    <a href="#" class="text-decoration-underline text-dark">Menu</a>
+    <a href="{{url('/terms-and-conditions')}}" class="text-decoration-underline text-dark">Terms and Conditions</a>
+    <a href="{{url('/privacy-policy')}}" class="text-decoration-underline text-dark">Privacy Policy</a>
+    <a href="{{url('/cookies-policy')}}" class="text-decoration-underline text-dark">Cookies Policy</a>
+  </div>
 </footer>
 
 </div>
