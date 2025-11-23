@@ -18,13 +18,14 @@
   <p class="m-0 text-center fw-semibold fs-4 flex-grow-1">
       Sushi Sapporo Takeaway Boston
   </p>
-  <button class="btn text-white fw-bold rounded-pill px-4 py-2" 
-          style="background-color:#dc3545;"
-          onmouseover="this.style.backgroundColor='black'"
-          onmouseout="this.style.backgroundColor='#dc3545'">
-      Order Online
-  </button>
- </nav>
+  <a href="{{ url('/menu') }}" 
+   class="btn text-white fw-bold rounded-pill px-4 py-2"
+   style="background-color:#dc3545;"
+   onmouseover="this.style.backgroundColor='black'"
+   onmouseout="this.style.backgroundColor='#dc3545'">
+   Order Online
+   </a>
+</nav>
 
  <section class="d-flex align-items-center" 
 style="height: 100vh; 
@@ -42,18 +43,20 @@ url('/images/main.jpg') center/cover no-repeat;">
             </p>
 
             <div class="mt-4">
-                <button class="btn text-white fw-bold rounded-pill px-4 py-2 me-1" 
+                <a href="{{ url('/menu') }}" 
+                class="btn text-white fw-bold rounded-pill px-4 py-2"
                 style="background-color:#dc3545;"
                 onmouseover="this.style.backgroundColor='black'"
                 onmouseout="this.style.backgroundColor='#dc3545'">
                 Order Online
-                </button>
-                <button class="btn fw-bold rounded-pill px-4 py-2 ms-1"
-                style="background-color:#fff; color:#111;"
+                </a>
+                <a href="{{ url('/menu') }}" 
+                class="btn fw-bold rounded-pill px-4 py-2 ms-1"
+                style="background-color:#fff; ; color:#111;"
                 onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
                 onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
-                View menu
-                </button>
+                View Menu
+                </a>
             </div>
         </div>
     </div>

@@ -7,13 +7,17 @@ Route::get('/', function () {
 });
 
 Route::get('/terms-and-conditions', function () {
-    return view('terms');
+    return view('terms-and-conditions');
 });
 
 Route::get('/privacy-policy', function () {
-    return view('privacy');
+    return view('privacy-policy');
 });
 
 Route::get('/cookies-policy', function () {
     return view('cookies-policy');
+});
+
+Route::get('/menu', function () {
+    return view('menu');
 });
