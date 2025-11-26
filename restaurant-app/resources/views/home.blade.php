@@ -149,7 +149,7 @@ url('/images/main.jpg') center/cover no-repeat;">
   <hr class="mb-4">
 
   <div class="d-flex flex-wrap gap-3 mb-4">
-    <a href="#" class="text-decoration-underline text-dark">Menu</a>
+    <a href="{{url('/menu')}}" class="text-decoration-underline text-dark">Menu</a>
     <a href="{{url('/terms-and-conditions')}}" class="text-decoration-underline text-dark">Terms and Conditions</a>
     <a href="{{url('/privacy-policy')}}" class="text-decoration-underline text-dark">Privacy Policy</a>
     <a href="{{url('/cookies-policy')}}" class="text-decoration-underline text-dark">Cookies Policy</a>
