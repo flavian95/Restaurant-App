@@ -8,6 +8,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+<style>
+    @media (max-width: 400px) {
+    .menu-card {
+        padding: 0 !important;
+    }
+
+    .menu-card .row {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .menu-card .col-8 {
+        text-align: center !important;
+    }
+
+    .menu-card .d-flex.align-items-center {
+        justify-content: center !important; 
+    }
+
+    .menu-card .col-4 {
+        text-align: center !important;
+        margin-top: 10px;
+    }
+}
+
+</style>
 <body>
 <div class="container">  
     <div class="container mt-5">
@@ -15,7 +41,7 @@
 
     <div class="col-md-6 ms-3">
       
-      <h1 class="mb-3">Sushi Sapporo</h1>
+      <h1 class="mb-3">Sushi Sapporo - Menu</h1>
 
       <div class="mb-2">
         <span class="me-2 fw-semibold">Store Information</span>
@@ -24,25 +50,48 @@
 
       <div class="mb-2">
         <i class="fa-solid fa-location-pin me-2"></i>
-        Somewhere in Boston
+        <a href="https://www.google.com/maps/search/?api=1&query=42.351423,-71.064984" target="_blank">
+        231 Tremont St, Boston
+        </a>
       </div>
 
+
       <div class="mb-2">
-        <i class="fa-solid fa-phone me-2"></i>
-        0682922
+       <i class="fa-solid fa-phone me-2"></i>
+       <a href="tel:012233445577">012233445577</a>
       </div>
+
 
     </div>
 
     <div class="col-md-5 d-flex justify-content-end align-items-start mt-1">
 
-      <a href="{{ url('/menu') }}" 
+      <!-- <a href="{{ url('/menu') }}" 
         class="me-1 btn text-white fw-bold rounded-pill px-4 py-2"
         style="background-color:#dc3545;"
+        id="cart-count"
         onmouseover="this.style.backgroundColor='black'"
         onmouseout="this.style.backgroundColor='#dc3545'">
         View Cart
-      </a>
+      <i class="fa-solid fa-basket-shopping"></i>
+      </a> -->
+
+      <a href="{{ url('/menu') }}" 
+    class="me-1 btn text-white fw-bold rounded-pill px-4 py-2"
+    style="background-color:#dc3545;"
+    onmouseover="this.style.backgroundColor='black'"
+    onmouseout="this.style.backgroundColor='#dc3545'">
+    
+    View Cart
+    <i class="fa-solid fa-basket-shopping"></i>
+
+    <!-- 👇 ADD THIS SMALL BADGE RIGHT HERE -->
+    <span id="cart-count" 
+          class="badge bg-dark ms-2"
+          style="font-size: 0.8rem;">0</span>
+</a>
+
+     
 
       <a href="{{ url('/menu') }}" 
         class=" ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
@@ -50,6 +99,7 @@
         onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
         onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
         Login
+      <i class="fa-solid fa-right-to-bracket"></i>
       </a>
 
     </div>
@@ -57,23 +107,27 @@
   </div>
 </div>
 
-
+<div style="background-image: url('{{ asset('images/menu.jpg') }}');">
 <div class="d-flex justify-content-center align-items-center m-3">
-    <h2 class="fs-1">Sushi</h2>
+    <h2 class="fs-1 text-white">Sushi</h2>
 </div>
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Double Avocado</h5>
                     <p class="text-muted mb-2">Fresh rice 3 oz, avocado 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$8.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
-                            <i class="fa-solid fa-plus"></i>
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="1"
+                                data-name="Double_avocado"
+                                data-price="8.95">
+                            <i class="fa-solid fa-plus add-to-cart"></i>
                         </button>
                     </div>
                 </div>
@@ -85,16 +139,20 @@
             </div>
         </div>
     </div>
-
+     
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Salmon Avocado</h5>
                     <p class="text-muted mb-2">Fresh rice 3 oz,fresh salmon 2 oz, avocado 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$10.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
+                                data-id="2"
+                                data-name="Salmon_avocado"
+                                data-price="10.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -109,14 +167,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Shrimp Avocado</h5>
                     <p class="text-muted mb-2">Fresh rice 3 oz, fresh shrimp 1.5 oz, avocado 1 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$11.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
+                                data-id="3"
+                                data-name="Shrimp_avocado"
+                                data-price="11.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -131,14 +193,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Philadelphia</h5>
                     <p class="text-muted mb-2">Fresh rice 4 oz,fresh salmon 2 oz, cucumber 2 oz, Philadelphia heavy cream 0.5 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$14.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="4"
+                                data-name="Philadelphia"
+                                data-price="14.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -153,14 +219,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Raijin</h5>
                     <p class="text-muted mb-2">Fresh rice 3 oz, cucumber 2 oz, California sauce 0.5 oz, flour, wasaby, mayo, eel sauce, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$18.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="5"
+                                data-name="Raijin"
+                                data-price="18.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -175,14 +245,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Tuna Avocado</h5>
                     <p class="text-muted mb-2">Fresh rice 3 oz, fresh tuna 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$17.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="6"
+                                data-name="Tuna_avocado"
+                                data-price="17.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -197,14 +271,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Kinkaku</h5>
                     <p class="text-muted mb-2">Fresh rice 6 oz,fresh salmon 2 oz, fresh shrimp 2 oz, Philadelphia heavy cream 1 oz, avocado 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$21.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="7"
+                                data-name="Kinkaku"
+                                data-price="21.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -219,14 +297,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Super Sushi</h5>
                     <p class="text-muted mb-2">Fresh rice 4 oz, tempura shrimp 3 oz, fried onion 1 oz, cucumber 0.5 oz, chivas 0.2 oz, basil mayo , curry mayo , soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$23.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="8"
+                                data-name="Super_sushi"
+                                data-price="23.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -241,14 +323,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card "
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Spicy Samurai Roll</h5>
                     <p class="text-muted mb-2">Fresh rice 3 oz,fresh tuna 2 oz, cucumber 1 oz, spicy yam yam sauce, sesame,  soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$25.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="9"
+                                data-name="Spicy_samurai_roll"
+                                data-price="25.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -263,14 +349,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Olympic</h5>
                     <p class="text-muted mb-2">Fresh rice 6 oz,fresh salmon 2 oz, cucumber 1 oz, tuna 2 oz, Philadelphia heavy cream 1 oz, avocado 1 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$30.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="10"
+                                data-name="Olympic"
+                                data-price="30.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -287,20 +377,24 @@
  </div>
 
  <div class="d-flex justify-content-center align-items-center m-2">
-    <h2 class="fs-1">Nigiri</h2>
+    <h2 class="fs-1 text-white">Nigiri</h2>
 </div>
 
  <div class="row row-cols-1 row-cols-md-2 g-4">
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Tuna Nigiri</h5>
                     <p class="text-muted mb-2">Nigiri (tuna) 2 oz, fresh rice 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$18.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="11"
+                                data-name="Tuna_nigiri"
+                                data-price="18.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -315,14 +409,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Salmon Nigiri</h5>
                     <p class="text-muted mb-2">Nigiri (salmon) 2 oz, fresh rice 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$21.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="12"
+                                data-name="Salmon_nigiri"
+                                data-price="21.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -339,13 +437,14 @@
 </div>
 
 <div class="d-flex justify-content-center align-items-center m-2">
-    <h2 class="fs-1">Sushi Set</h2>
+    <h2 class="fs-1 text-white">Sushi Set</h2>
 </div>
 
  <div class="row row-cols-1 row-cols-md-2 g-4">
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Tokyo Tuna Set</h5>
@@ -353,7 +452,10 @@
                     <p class="text-muted mb-2">Tuna nigiri 2 pc</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$68.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="13"
+                                data-name="Tokyo_tuna_set"
+                                data-price="68.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -368,7 +470,8 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Osaka Salmon Set</h5>
@@ -376,7 +479,10 @@
                     <p class="text-muted mb-2">Salmon Nigiri 2 pc</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$78.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="14"
+                                data-name="Osaka_salmon_set"
+                                data-price="78.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -393,20 +499,24 @@
 </div>
 
 <div class="d-flex justify-content-center align-items-center m-2">
-    <h2 class="fs-1">Beverages</h2>
+    <h2 class="fs-1 text-white">Beverages</h2>
 </div>
 
  <div class="row row-cols-1 row-cols-md-2 g-4">
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Mineral Water</h5>
                     <p class="text-muted mb-2">Crisp, refreshing, naturally sparkling hydration.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$3.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="15"
+                                data-name="water"
+                                data-price="3.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -421,14 +531,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Coffee</h5>
                     <p class="text-muted mb-2">Rich, aromatic, freshly brewed morning essential.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$5.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="16"
+                                data-name="Coffee"
+                                data-price="5.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -443,14 +557,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Pepsi</h5>
                     <p class="text-muted mb-2">Classic, fizzy, sweet cola with bold flavor.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$4.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="17"
+                                data-name="Pepsi"
+                                data-price="4.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -465,14 +583,18 @@
     </div>
 
     <div class="col">
-        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3">
+        <div class="card h-100 d-flex flex-column mb-4 shadow-sm border-0 p-3 menu-card"
+        style="background-color: rgba(255,255,255,0.5);">
             <div class="row g-3 align-items-center flex-fill">
                 <div class="col-8">
                     <h5 class="mb-1">Homemade Lemonade</h5>
                     <p class="text-muted mb-2">Tart, sweet, freshly squeezed citrus delight.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$6.95</p>
-                        <button class="btn btn-light border rounded-circle p-2">
+                        <button class="btn btn-light border rounded-circle p-2"
+                                data-id="18"
+                                data-name="Lemonade"
+                                data-price="6.95">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -489,6 +611,8 @@
 
 </div> 
 
+</div>
+
 <footer class="container mt-5 pt-4">
   <h4 class="fw-normal mb-3">Sushi Sapporo Authentic Sushi®</h4>
   <hr class="mb-4">
@@ -502,6 +626,39 @@
 </footer>
  
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            let id = button.dataset.id;
+            let name = button.dataset.name;
+            let price = button.dataset.price;
+
+            console.log("Clicked:", id, name, price);
+
+            fetch("{{ route('cart.add') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ id, name, price })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("Response:", data);
+                if (data.success) {
+                    document.getElementById('cart-count').innerText = data.cart_count;
+                }
+            })
+            .catch(err => console.error(err));
+        });
+    });
+});
+</script>
+
 </html>

@@ -8,16 +8,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+<style>
+  @media (max-width: 400px) {
+     .navigation{
+       display: block !important;
+     }
+
+     .nav-div{
+      display: flex;
+      justify-content: center ;
+      margin: 5px 0 5px 0 ;
+     }
+  }
+</style>
 <body>
 <div class="mx-auto" style="max-width: 1240px;">   
- <nav class="d-flex align-items-center justify-content-between p-3 bg-white"> 
+ <nav class="d-flex align-items-center justify-content-between p-3 bg-white navigation"> 
+  <div class="nav-div">
   <img src="{{ asset('images/hero.png') }}" 
        alt="Hero Image" 
        class="img-fluid"
        style="max-height: 60px;">
+  </div>
   <p class="m-0 text-center fw-semibold fs-4 flex-grow-1">
       Sushi Sapporo Takeaway Boston
   </p>
+  <div class="nav-div">
   <a href="{{ url('/menu') }}" 
    class="btn text-white fw-bold rounded-pill px-4 py-2"
    style="background-color:#dc3545;"
@@ -25,6 +41,7 @@
    onmouseout="this.style.backgroundColor='#dc3545'">
    Order Online
    </a>
+   </div>
 </nav>
 
  <section class="d-flex align-items-center" 
@@ -111,14 +128,16 @@ url('/images/main.jpg') center/cover no-repeat;">
         <span class="text-muted">• Closes at 9:30 pm</span>
       </div>
 
-      <div class="d-flex align-items-center mt-3">
-        <i class="fa-solid fa-location-dot me-2 text-secondary"></i>
-        <span>Somewhere in Boston</span>
+      <div class="mb-2">
+        <i class="fa-solid fa-location-pin me-2"></i>
+        <a href="https://www.google.com/maps/search/?api=1&query=42.351423,-71.064984" target="_blank">
+        231 Tremont St, Boston
+        </a>
       </div>
 
       <div class="d-flex align-items-center mt-2">
         <i class="fa-solid fa-phone me-2 text-secondary"></i>
-        <span>012233445577</span>
+        <a href="tel:012233445577">012233445577</a>
       </div>
 
       <div class="d-flex mt-4">

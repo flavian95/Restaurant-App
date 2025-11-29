@@ -21,3 +21,5 @@ Route::get('/cookies-policy', function () {
 Route::get('/menu', function () {
     return view('menu');
 });
+
+Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');

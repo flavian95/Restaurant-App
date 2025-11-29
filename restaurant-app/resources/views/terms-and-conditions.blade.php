@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms and Conditions - Sushi Sapporo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+</head>
+<style>
         body { background:#f8f9fa; }
         .container { max-width: 900px; margin-top: 40px; margin-bottom: 40px; }
         h1, h2, h3 { margin-top: 30px; }
         p, li { line-height: 1.6; }
     </style>
-</head>
 <body>
     <div class="container bg-white p-5 shadow-sm rounded">
 
@@ -118,6 +118,18 @@
 
         <h2>Contact Us</h2>
         <p>If you have any questions about these Terms and Conditions, You can contact us by calling us at</p>
+
+        <footer class="container mt-5 pt-4">
+  <h4 class="fw-normal mb-3">Sushi Sapporo Authentic Sushi®</h4>
+  <hr class="mb-4">
+
+  <div class="d-flex flex-wrap gap-3 mb-4">
+    <a href="{{url('/home')}}" class="text-decoration-underline text-dark">Home</a>
+    <a href="{{url('/menu')}}" class="text-decoration-underline text-dark">Menu</a>
+    <a href="{{url('/privacy-policy')}}" class="text-decoration-underline text-dark">Privacy Policy</a>
+    <a href="{{url('/cookies-policy')}}" class="text-decoration-underline text-dark">Cookies Policy</a>
+  </div>
+</footer>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

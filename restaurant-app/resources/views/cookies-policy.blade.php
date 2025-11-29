@@ -97,8 +97,19 @@
 
         <h2>Contact Us</h2>
         <p>If you have any questions about this Cookies Policy, You can contact us by calling us at</p>
-    </div>
 
+        <footer class="container mt-5 pt-4">
+  <h4 class="fw-normal mb-3">Sushi Sapporo Authentic Sushi®</h4>
+  <hr class="mb-4">
+
+  <div class="d-flex flex-wrap gap-3 mb-4">
+    <a href="{{url('/Home')}}" class="text-decoration-underline text-dark">Home</a>
+    <a href="{{url('/menu')}}" class="text-decoration-underline text-dark">Menu</a>
+    <a href="{{url('/terms-and-conditions')}}" class="text-decoration-underline text-dark">Terms and Conditions</a>
+    <a href="{{url('/privacy-policy')}}" class="text-decoration-underline text-dark">Privacy Policy</a>
+  </div>
+</footer>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
