@@ -33,6 +33,36 @@
     }
 }
 
+@media (min-width: 765px) and (max-width: 995px) {
+    .menu-card .row {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .menu-card .col-8 {
+        text-align: center !important;
+    }
+
+    .menu-card .d-flex.align-items-center {
+        justify-content: center !important; 
+    }
+
+    .menu-card .col-4 {
+        text-align: center !important;
+        margin-top: 10px;
+    }
+
+    .l1{
+      position: relative !important;
+      top: 27px !important;
+    }
+
+    .l2{
+      position: relative !important;
+      top: 54px !important;
+    }
+}
+
 </style>
 <body>
 <div class="container">  
@@ -45,7 +75,8 @@
 
       <div class="mb-2">
         <span class="me-2 fw-semibold">Store Information</span>
-        <span class="badge bg-danger">CLOSED NOW</span>
+        <span class="badge bg-danger badge-open">CLOSED NOW</span>
+        <span class="text-muted text-open">• Closes at 9:30 pm</span>
       </div>
 
       <div class="mb-2">
@@ -66,32 +97,16 @@
 
     <div class="col-md-5 d-flex justify-content-end align-items-start mt-1">
 
-      <!-- <a href="{{ url('/menu') }}" 
-        class="me-1 btn text-white fw-bold rounded-pill px-4 py-2"
-        style="background-color:#dc3545;"
-        id="cart-count"
-        onmouseover="this.style.backgroundColor='black'"
-        onmouseout="this.style.backgroundColor='#dc3545'">
-        View Cart
-      <i class="fa-solid fa-basket-shopping"></i>
-      </a> -->
-
-      <a href="{{ url('/menu') }}" 
-    class="me-1 btn text-white fw-bold rounded-pill px-4 py-2"
-    style="background-color:#dc3545;"
-    onmouseover="this.style.backgroundColor='black'"
-    onmouseout="this.style.backgroundColor='#dc3545'">
-    
-    View Cart
-    <i class="fa-solid fa-basket-shopping"></i>
-
-    <!-- 👇 ADD THIS SMALL BADGE RIGHT HERE -->
-    <span id="cart-count" 
+      <a href="{{ route('cart.view') }}" 
+         class="me-1 btn text-white fw-bold rounded-pill px-4 py-2"
+         style="background-color:#dc3545;"
+         onmouseover="this.style.backgroundColor='black'"
+         onmouseout="this.style.backgroundColor='#dc3545'"> View Cart
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span id="cart-count" 
           class="badge bg-dark ms-2"
           style="font-size: 0.8rem;">0</span>
-</a>
-
-     
+      </a>
 
       <a href="{{ url('/menu') }}" 
         class=" ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
@@ -123,11 +138,12 @@
                     <p class="text-muted mb-2">Fresh rice 3 oz, avocado 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$8.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="1"
                                 data-name="Double_avocado"
-                                data-price="8.95">
-                            <i class="fa-solid fa-plus add-to-cart"></i>
+                                data-price="8.95"
+                                data-image="/images/double-avocado.png">
+                            <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
@@ -152,7 +168,8 @@
                         <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="2"
                                 data-name="Salmon_avocado"
-                                data-price="10.95">
+                                data-price="10.95"
+                                data-image="/images/salmon-avocado.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -178,12 +195,13 @@
                         <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="3"
                                 data-name="Shrimp_avocado"
-                                data-price="11.95">
+                                data-price="11.95"
+                                data-image="/images/shrimp-avocado.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="col-4 text-end">
+                <div class="col-4 text-end l2">
                     <img src="{{ asset('images/shrimp-avocado.png') }}" 
                          class="img-fluid rounded menu-img"
                          style="max-width:120px; border-radius:12px; object-fit:cover;">
@@ -201,10 +219,11 @@
                     <p class="text-muted mb-2">Fresh rice 4 oz,fresh salmon 2 oz, cucumber 2 oz, Philadelphia heavy cream 0.5 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$14.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="4"
                                 data-name="Philadelphia"
-                                data-price="14.95">
+                                data-price="14.95"
+                                data-image="/images/philadelphia.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -227,10 +246,11 @@
                     <p class="text-muted mb-2">Fresh rice 3 oz, cucumber 2 oz, California sauce 0.5 oz, flour, wasaby, mayo, eel sauce, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$18.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="5"
                                 data-name="Raijin"
-                                data-price="18.95">
+                                data-price="18.95"
+                                data-image="/images/raijin.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -253,15 +273,16 @@
                     <p class="text-muted mb-2">Fresh rice 3 oz, fresh tuna 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$17.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="6"
                                 data-name="Tuna_avocado"
-                                data-price="17.95">
+                                data-price="17.95"
+                                data-image="/images/tuna-avocado.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="col-4 text-end">
+                <div class="col-4 text-end l2">
                     <img src="{{ asset('images/tuna-avocado.png') }}" 
                          class="img-fluid rounded menu-img"
                          style="max-width:120px; border-radius:12px; object-fit:cover;">
@@ -279,15 +300,16 @@
                     <p class="text-muted mb-2">Fresh rice 6 oz,fresh salmon 2 oz, fresh shrimp 2 oz, Philadelphia heavy cream 1 oz, avocado 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$21.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="7"
                                 data-name="Kinkaku"
-                                data-price="21.95">
+                                data-price="21.95"
+                                data-image="/images/kinkaku.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="col-4 text-end">
+                <div class="col-4 text-end l1">
                     <img src="{{ asset('images/kinkaku.png') }}" 
                          class="img-fluid rounded menu-img"
                          style="max-width:120px; border-radius:12px; object-fit:cover;">
@@ -305,10 +327,11 @@
                     <p class="text-muted mb-2">Fresh rice 4 oz, tempura shrimp 3 oz, fried onion 1 oz, cucumber 0.5 oz, chivas 0.2 oz, basil mayo , curry mayo , soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$23.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="8"
                                 data-name="Super_sushi"
-                                data-price="23.95">
+                                data-price="23.95"
+                                data-image="/images/super-sushi.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -331,15 +354,16 @@
                     <p class="text-muted mb-2">Fresh rice 3 oz,fresh tuna 2 oz, cucumber 1 oz, spicy yam yam sauce, sesame,  soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$25.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="9"
                                 data-name="Spicy_samurai_roll"
-                                data-price="25.95">
+                                data-price="25.95"
+                                data-image="/images/spicy-samurai-roll.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="col-4 text-end">
+                <div class="col-4 text-end l1">
                     <img src="{{ asset('images/spicy-samurai-roll.png') }}" 
                          class="img-fluid rounded menu-img"
                          style="max-width:120px; border-radius:12px; object-fit:cover;">
@@ -357,10 +381,11 @@
                     <p class="text-muted mb-2">Fresh rice 6 oz,fresh salmon 2 oz, cucumber 1 oz, tuna 2 oz, Philadelphia heavy cream 1 oz, avocado 1 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$30.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="10"
                                 data-name="Olympic"
-                                data-price="30.95">
+                                data-price="30.95"
+                                data-image="/images/olympic.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -391,10 +416,11 @@
                     <p class="text-muted mb-2">Nigiri (tuna) 2 oz, fresh rice 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$18.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="11"
                                 data-name="Tuna_nigiri"
-                                data-price="18.95">
+                                data-price="18.95"
+                                data-image="/images/tuna-nigiri.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -417,10 +443,11 @@
                     <p class="text-muted mb-2">Nigiri (salmon) 2 oz, fresh rice 2 oz, soy sauce, ginger and wasabi</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$21.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="12"
                                 data-name="Salmon_nigiri"
-                                data-price="21.95">
+                                data-price="21.95"
+                                data-image="/images/salmon_nigiri.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -452,15 +479,16 @@
                     <p class="text-muted mb-2">Tuna nigiri 2 pc</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$68.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="13"
                                 data-name="Tokyo_tuna_set"
-                                data-price="68.95">
+                                data-price="68.95"
+                                data-image="/images/tokyo-tuna-set.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="col-4 text-end">
+                <div class="col-4 text-end l1">
                     <img src="{{ asset('images/tokyo-tuna-set.png') }}" 
                          class="img-fluid rounded menu-img"
                          style="max-width:120px; border-radius:12px; object-fit:cover;">
@@ -479,10 +507,11 @@
                     <p class="text-muted mb-2">Salmon Nigiri 2 pc</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$78.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="14"
                                 data-name="Osaka_salmon_set"
-                                data-price="78.95">
+                                data-price="78.95"
+                                data-image="/images/osaka-salmon-set.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -513,10 +542,11 @@
                     <p class="text-muted mb-2">Crisp, refreshing, naturally sparkling hydration.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$3.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="15"
                                 data-name="water"
-                                data-price="3.95">
+                                data-price="3.95"
+                                data-image="/images/water.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -539,10 +569,11 @@
                     <p class="text-muted mb-2">Rich, aromatic, freshly brewed morning essential.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$5.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="16"
                                 data-name="Coffee"
-                                data-price="5.95">
+                                data-price="5.95"
+                                data-image="/images/coffee.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -565,15 +596,16 @@
                     <p class="text-muted mb-2">Classic, fizzy, sweet cola with bold flavor.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$4.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="17"
                                 data-name="Pepsi"
-                                data-price="4.95">
+                                data-price="4.95"
+                                data-image="/images/pepsi.jpg">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="col-4 text-end">
+                <div class="col-4 text-end l1">
                     <img src="{{ asset('images/pepsi.jpg') }}" 
                          class="img-fluid rounded menu-img"
                          style="max-width:120px; border-radius:12px; object-fit:cover;">
@@ -591,10 +623,11 @@
                     <p class="text-muted mb-2">Tart, sweet, freshly squeezed citrus delight.</p>
                     <div class="d-flex align-items-center">
                         <p class="fw-semibold mb-0 me-3">$6.95</p>
-                        <button class="btn btn-light border rounded-circle p-2"
+                        <button class="btn btn-light border rounded-circle p-2 add-to-cart"
                                 data-id="18"
                                 data-name="Lemonade"
-                                data-price="6.95">
+                                data-price="6.95"
+                                data-image="/images/lemonade.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -631,14 +664,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', () => {
             let id = button.dataset.id;
             let name = button.dataset.name;
             let price = button.dataset.price;
+            let image = button.dataset.image;
 
-            console.log("Clicked:", id, name, price);
+            console.log("Clicked:", id, name, price, image);
 
             fetch("{{ route('cart.add') }}", {
                 method: "POST",
@@ -646,7 +679,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 },
-                body: JSON.stringify({ id, name, price })
+                body: JSON.stringify({ id, name, price, image })
             })
             .then(res => res.json())
             .then(data => {
@@ -658,7 +691,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(err => console.error(err));
         });
     });
-});
 </script>
+<script src="{{ asset('js/open.js') }}"></script>
 
 </html>

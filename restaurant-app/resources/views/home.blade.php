@@ -124,8 +124,8 @@ url('/images/main.jpg') center/cover no-repeat;">
       <h3 class="fw-bold">Sushi Sapporo Authentic Sushi</h3>
 
       <div class="d-flex align-items-center gap-2 mt-2">
-        <span class="badge bg-danger">CLOSED NOW</span>
-        <span class="text-muted">• Closes at 9:30 pm</span>
+        <span class="badge bg-danger badge-open"></span>
+        <span class="text-muted text-open"></span>
       </div>
 
       <div class="mb-2">
@@ -141,16 +141,16 @@ url('/images/main.jpg') center/cover no-repeat;">
       </div>
 
       <div class="d-flex mt-4">
-        <button class="btn btn-dark w-50 me-2 d-flex justify-content-center align-items-center">
+        <button class="btn btn-dark w-50 me-2 d-flex justify-content-center align-items-center btn-pickup">
           <i class="fa-solid fa-bag-shopping me-2"></i> Pickup
         </button>
-        <button class="btn btn-outline-dark w-50 d-flex justify-content-center align-items-center">
+        <button class="btn btn-outline-dark w-50 d-flex justify-content-center align-items-center btn-delivery">
           <i class="fa-solid fa-motorcycle me-2"></i> Delivery
         </button>
       </div>
 
       <div class="mt-4 p-3 bg-light rounded">
-        <h5 class="fw-bold mb-3">Hours of Operation (Takeout)</h5>
+        <h5 class="fw-bold mb-3 hours-of-operation">Hours of Operation (Takeout)</h5>
 
         <div class="d-flex justify-content-between">
           <span>Monday – Sunday</span>
@@ -177,6 +177,9 @@ url('/images/main.jpg') center/cover no-repeat;">
 
 </div>
 <script src="{{ asset('js/maps.js') }}"></script>
+<script src="{{ asset('js/delivery.js') }}"></script>
+<script src="{{ asset('js/hours.js') }}"></script>
+<script src="{{ asset('js/open.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=initMap&v=weekly"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
