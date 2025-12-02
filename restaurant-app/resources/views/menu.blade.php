@@ -108,7 +108,7 @@
           style="font-size: 0.8rem;">0</span>
       </a>
 
-      <a href="{{ url('/menu') }}" 
+      <a href="{{ route('login.perform') }}" 
         class=" ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
         style="background-color:#fff; color:#111;"
         onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
@@ -121,6 +121,10 @@
 
   </div>
 </div>
+
+@if (session('success'))
+    <div style="color:green;">{{ session('success') }}</div>
+@endif
 
 <div style="background-image: url('{{ asset('images/menu.jpg') }}');">
 <div class="d-flex justify-content-center align-items-center m-3">
@@ -447,7 +451,7 @@
                                 data-id="12"
                                 data-name="Salmon_nigiri"
                                 data-price="21.95"
-                                data-image="/images/salmon_nigiri.png">
+                                data-image="/images/salmon-nigiri.png">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>

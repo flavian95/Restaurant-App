@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User1;
 
 class CartController extends Controller
 {
@@ -85,5 +87,28 @@ public function updateQuantity(Request $request)
     ]);
 }
 
+public function login(Request $request)
+    {
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password, // Laravel will check against getAuthPassword()
+        ];
+
+        // Custom auth attempt since column is not "password"
+        $user = User1::where('email', $request->email)->first();
+
+        if (!$user || !\Hash::check($request->password, $user->password_hash)) {
+            return back()->withErrors(['email' => 'Invalid email or password']);
+        }
+
+        Auth::login($user); // Laravel sets session cookie automatically
+        return redirect('/menu');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
 
 }
