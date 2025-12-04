@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect('/menu')->with('success', 'Logged in successfully!');
+        return redirect('/menu');
     }
 
     public function logout()

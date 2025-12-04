@@ -108,23 +108,44 @@
           style="font-size: 0.8rem;">0</span>
       </a>
 
-      <a href="{{ route('login.perform') }}" 
-        class=" ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+@if (Auth::check())
+    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+    @csrf
+    <button type="submit"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+        style="background-color:#fff; color:#111;"
+        onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
+        onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
+        Logout
+        <i class="fa-solid fa-right-from-bracket"></i>
+    </button>
+</form>
+@else
+    <a href="{{ route('login.perform') }}"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
         style="background-color:#fff; color:#111;"
         onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
         onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
         Login
-      <i class="fa-solid fa-right-to-bracket"></i>
-      </a>
+        <i class="fa-solid fa-right-to-bracket"></i>
+    </a>
+@endif
+
+@if (Auth::check())
+    <a href="{{ route('dashboard.show') }}"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+        style="background-color:#fff; color:#111;"
+        onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
+        onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
+        Dashboard
+        <i class="fa-solid fa-gauge"></i>
+    </a>
+@endif
 
     </div>
 
   </div>
 </div>
-
-@if (session('success'))
-    <div style="color:green;">{{ session('success') }}</div>
-@endif
 
 <div style="background-image: url('{{ asset('images/menu.jpg') }}');">
 <div class="d-flex justify-content-center align-items-center m-3">
@@ -664,9 +685,7 @@
  
 </div>
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="{{ asset('js/open.js') }}"></script>
 <script>
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', () => {
@@ -696,6 +715,4 @@
         });
     });
 </script>
-<script src="{{ asset('js/open.js') }}"></script>
-
 </html>

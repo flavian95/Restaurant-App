@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart - Sushi Sapporo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <style>
     .delivery-div{
@@ -56,11 +58,28 @@
         </button>
       </div>
 
-        <a href="/menu" class="btn btn-dark mt-3">Back to Menu</a>
+        @if (!Auth::check())
+        <a href="{{ route('login.perform') }}"
+        style="background-color:#dc3545; color: white"
+        onmouseover="this.style.backgroundColor='black', this.style.color='white'"
+        onmouseout="this.style.backgroundColor='#dc3545'"
+        class="btn mt-5 me-2">
+        Login
+        <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
+        @endif
+        <button class="btn btn-danger w-100 mt-4 fw-bold" id="place-order-btn">
+           Place Order
+        </button>
+
+
+        <a href="/menu" class="btn btn-dark mt-5 ms-2">Back to Menu</a>
     </div>
 </div>
-
+<script src="{{ asset('js/delivery.js') }}"></script>
+<script src="{{ asset('js/delivery.js') }}"></script>
 <script>
+    
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.remove-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -120,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 </script>
-<script src="{{ asset('js/delivery.js') }}"></script>
 
 </body>
 </html>
