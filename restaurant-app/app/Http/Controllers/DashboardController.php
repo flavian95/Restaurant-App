@@ -12,9 +12,14 @@ class DashboardController extends Controller
     public function view()
     {
         $user = Auth::user();
-        $profile = $user->profile; // via hasOne relation
+        $profile = $user->profile;
 
-        return view('dashboard', compact('user', 'profile'));
+        // $orders = $user->orders()->with('items')->get();
+
+        $orders = $user->orders()->with('items')->orderBy('created_at', 'asc')->get();
+
+
+        return view('dashboard', compact('user', 'profile', 'orders'));
     }
 
     public function update(Request $request)

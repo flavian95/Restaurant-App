@@ -1,16 +1,19 @@
 
+function cart(){
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.remove-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             let card = btn.closest('.cart-item');
             let id = card.dataset.id;
 
-            fetch("{{ route('cart.remove') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
+            const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+            fetch('/cart/remove', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                       'X-CSRF-TOKEN': csrf
+                    },
                 body: JSON.stringify({ id })
             })
             .then(res => res.json())
@@ -28,12 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let id = card.dataset.id;
             let change = parseInt(btn.dataset.change);
 
-            fetch("{{ route('cart.update') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
+            const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+            fetch('/cart/update', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                       'X-CSRF-TOKEN': csrf
+                    },
                 body: JSON.stringify({ id, change })
             })
             .then(res => res.json())
@@ -56,4 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (badge) badge.innerText = count;
     }
 
-});
+})
+};
+
+cart();

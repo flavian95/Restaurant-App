@@ -72,6 +72,31 @@
         <button type="submit" class="btn btn-primary mb-3">Update Profile</button>
 
     </form>
+
+<h3 class="mt-5">My Orders</h3>
+
+@if($orders->isEmpty())
+    <p>You have no orders yet.</p>
+@else
+    @foreach($orders as $order)
+        <div class="card mb-3">
+          <div class="card-header">
+            Order #{{ $loop->iteration }} — 
+            Type: {{ $order->order_type }} — 
+            Created at: {{ \Carbon\Carbon::parse($order->created_at)->timezone('America/New_York')->format('g:i A') }}
+          </div>
+
+          <ul class="list-group list-group-flush">
+                @foreach($order->items as $item)
+                    <li class="list-group-item">
+                        {{ $item->name }} — Quantity: {{ $item->pivot->quantity }}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endforeach
+@endif
+
 </div>
 
 </body>

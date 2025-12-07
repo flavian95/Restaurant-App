@@ -7,6 +7,7 @@
     <title>Menu - Sushi Sapporo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <style>
     @media (max-width: 400px) {
@@ -686,33 +687,5 @@
 </div>
 </body>
 <script src="{{ asset('js/open.js') }}"></script>
-<script>
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            let id = button.dataset.id;
-            let name = button.dataset.name;
-            let price = button.dataset.price;
-            let image = button.dataset.image;
-
-            console.log("Clicked:", id, name, price, image);
-
-            fetch("{{ route('cart.add') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ id, name, price, image })
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log("Response:", data);
-                if (data.success) {
-                    document.getElementById('cart-count').innerText = data.cart_count;
-                }
-            })
-            .catch(err => console.error(err));
-        });
-    });
-</script>
+<script src="{{ asset('js/menu.js') }}"></script>
 </html>

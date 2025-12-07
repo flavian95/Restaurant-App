@@ -76,8 +76,8 @@
         <a href="/menu" class="btn btn-dark mt-5 ms-2">Back to Menu</a>
     </div>
 </div>
-<script src="{{ asset('js/delivery.js') }}"></script>
-<script src="{{ asset('js/delivery.js') }}"></script>
+<!-- <script src="{{ asset('js/delivery.js') }}"></script>
+<script src="{{ asset('js/cart.js') }}"></script> -->
 <script>
     
 document.addEventListener('DOMContentLoaded', () => {
@@ -86,12 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let card = btn.closest('.cart-item');
             let id = card.dataset.id;
 
-            fetch("{{ route('cart.remove') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
+            const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+            fetch('/cart/remove', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                       'X-CSRF-TOKEN': csrf
+                    },
                 body: JSON.stringify({ id })
             })
             .then(res => res.json())
@@ -109,12 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let id = card.dataset.id;
             let change = parseInt(btn.dataset.change);
 
-            fetch("{{ route('cart.update') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
+            const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+            fetch('/cart/update', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                       'X-CSRF-TOKEN': csrf
+                    },
                 body: JSON.stringify({ id, change })
             })
             .then(res => res.json())
@@ -137,9 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (badge) badge.innerText = count;
     }
 
-});
-</script>
+})
 
+const pickupBtn = document.querySelector('.btn-pickup');
+    const deliveryBtn = document.querySelector('.btn-delivery');
+
+    function activate(active, inactive) {
+        active.classList.add('btn-dark');
+        active.classList.remove('btn-outline-dark');
+
+        inactive.classList.remove('btn-dark');
+        inactive.classList.add('btn-outline-dark');
+    }
+
+pickupBtn.addEventListener('click', () => activate(pickupBtn, deliveryBtn));
+deliveryBtn.addEventListener('click', () => activate(deliveryBtn, pickupBtn));
+
+</script>
 </body>
 </html>
 
