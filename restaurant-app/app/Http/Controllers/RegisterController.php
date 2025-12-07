@@ -29,17 +29,11 @@ class RegisterController extends Controller
             'password_hash' => Hash::make($request->password),
         ]);
 
-        // DB::table('user_profiles')->insert([
-        //     'user_id' => $user->id,
-        //     'phone' => $request->phone,
-        //     'address' => ''
-        // ]);
-
          User_Profile::create([
             'user_id' => $user->id,
             'name' => $request->name,
             'phone' => $request->phone,
-            'address' => ''
+            'address' => $request->address
         ]);
 
         Auth::login($user);

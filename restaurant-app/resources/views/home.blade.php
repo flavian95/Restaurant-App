@@ -181,6 +181,5 @@ url('/images/main.jpg') center/cover no-repeat;">
 <script src="{{ asset('js/hours.js') }}"></script>
 <script src="{{ asset('js/open.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=initMap&v=weekly"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
