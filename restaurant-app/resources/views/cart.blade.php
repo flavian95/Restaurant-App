@@ -76,8 +76,7 @@
         <a href="/menu" class="btn btn-dark mt-5 ms-2">Back to Menu</a>
     </div>
 </div>
-<!-- <script src="{{ asset('js/delivery.js') }}"></script>
-<script src="{{ asset('js/cart.js') }}"></script> -->
+
 <script>
     
 document.addEventListener('DOMContentLoaded', () => {
@@ -158,6 +157,8 @@ pickupBtn.addEventListener('click', () => activate(pickupBtn, deliveryBtn));
 deliveryBtn.addEventListener('click', () => activate(deliveryBtn, pickupBtn));
 
 </script>
+<script src="{{ asset('js/delivery.js') }}"></script>
+
 </body>
 </html>
 

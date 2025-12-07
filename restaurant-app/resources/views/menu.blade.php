@@ -124,10 +124,39 @@
 @else
     <a href="{{ route('login.perform') }}"
         class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+@if (Auth::check())
+    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+    @csrf
+    <button type="submit"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+        style="background-color:#fff; color:#111;"
+        onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
+        onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
+        Logout
+        <i class="fa-solid fa-right-from-bracket"></i>
+    </button>
+</form>
+@else
+    <a href="{{ route('login.perform') }}"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
         style="background-color:#fff; color:#111;"
         onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
         onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
         Login
+        <i class="fa-solid fa-right-to-bracket"></i>
+    </a>
+@endif
+
+@if (Auth::check())
+    <a href="{{ route('dashboard.show') }}"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+        style="background-color:#fff; color:#111;"
+        onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
+        onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
+        Dashboard
+        <i class="fa-solid fa-gauge"></i>
+    </a>
+@endif
         <i class="fa-solid fa-right-to-bracket"></i>
     </a>
 @endif
