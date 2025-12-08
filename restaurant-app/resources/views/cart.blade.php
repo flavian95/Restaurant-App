@@ -13,6 +13,24 @@
     .delivery-div{
         max-width: 756px;
     }
+
+    @media (max-width: 250px) {
+         .delivery-div{
+            display: block !important;
+         }
+
+         .btn-pickup, .btn-delivery{
+            margin: 5px 0 ;
+         }
+
+         .quantity-div{
+            display: block !important;
+         }
+
+         .remove-btn{
+            margin-top: 8px;
+         }
+    }
 </style>
 <body>
 
@@ -33,7 +51,7 @@
                     <h5 class="mb-1">{{ $item['name'] }}</h5>
                     <p class="mb-2">${{ $item['price'] }}</p>
                     
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center quantity-div">
                         <button class="btn btn-sm btn-outline-secondary qty-btn" data-change="-1">−</button>
                         <span class="mx-3 quantity">{{ $item['quantity'] }}</span>
                         <button class="btn btn-sm btn-outline-secondary qty-btn" data-change="1">+</button>

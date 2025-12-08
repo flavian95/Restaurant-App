@@ -48,3 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard.show');
     Route::post('/dashboard', [DashboardController::class, 'update'])->name('dashboard.update');
 });
+
+Route::get('/cart/count', function () {
+    $cart = session('cart', []);
+    return response()->json([
+        'count' => array_sum(array_column($cart, 'quantity'))
+    ]);
+});

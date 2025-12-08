@@ -32,6 +32,14 @@
         text-align: center !important;
         margin-top: 10px;
     }
+
+    .buttons-div{
+        display: block !important;
+    }
+
+    .buttons{
+        margin: 5px 0 !important;
+    }
 }
 
 @media (min-width: 765px) and (max-width: 995px) {
@@ -77,7 +85,7 @@
       <div class="mb-2">
         <span class="me-2 fw-semibold">Store Information</span>
         <span class="badge bg-danger badge-open">CLOSED NOW</span>
-        <span class="text-muted text-open">• Closes at 9:30 pm</span>
+        <span class="text-muted text-open">• Closes at 8:00 pm</span>
       </div>
 
       <div class="mb-2">
@@ -96,10 +104,10 @@
 
     </div>
 
-    <div class="col-md-5 d-flex justify-content-end align-items-start mt-1">
+    <div class="col-md-5 d-flex justify-content-end align-items-start mt-1 buttons-div">
 
       <a href="{{ route('cart.view') }}" 
-         class="me-1 btn text-white fw-bold rounded-pill px-4 py-2"
+         class="me-1 btn text-white fw-bold rounded-pill px-4 py-2 buttons"
          style="background-color:#dc3545;"
          onmouseover="this.style.backgroundColor='black'"
          onmouseout="this.style.backgroundColor='#dc3545'"> View Cart
@@ -109,67 +117,37 @@
           style="font-size: 0.8rem;">0</span>
       </a>
 
-@if (Auth::check())
+      @if (Auth::check())
     <form action="{{ route('logout') }}" method="POST" class="d-inline">
-    @csrf
-    <button type="submit"
-        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+        @csrf
+        <button type="submit"
+            class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark buttons"
+            style="background-color:#fff; color:#111;"
+            onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
+            onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
+            Logout
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+    </form>
+    <a href="{{ route('dashboard.show') }}"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark buttons"
         style="background-color:#fff; color:#111;"
         onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
         onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
-        Logout
-        <i class="fa-solid fa-right-from-bracket"></i>
-    </button>
-</form>
+        Dashboard
+        <i class="fa-solid fa-gauge"></i>
+    </a>
+
 @else
     <a href="{{ route('login.perform') }}"
-        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
-@if (Auth::check())
-    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-    @csrf
-    <button type="submit"
-        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
-        style="background-color:#fff; color:#111;"
-        onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
-        onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
-        Logout
-        <i class="fa-solid fa-right-from-bracket"></i>
-    </button>
-</form>
-@else
-    <a href="{{ route('login.perform') }}"
-        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
+        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark buttons"
         style="background-color:#fff; color:#111;"
         onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
         onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
         Login
         <i class="fa-solid fa-right-to-bracket"></i>
     </a>
-@endif
 
-@if (Auth::check())
-    <a href="{{ route('dashboard.show') }}"
-        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
-        style="background-color:#fff; color:#111;"
-        onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
-        onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
-        Dashboard
-        <i class="fa-solid fa-gauge"></i>
-    </a>
-@endif
-        <i class="fa-solid fa-right-to-bracket"></i>
-    </a>
-@endif
-
-@if (Auth::check())
-    <a href="{{ route('dashboard.show') }}"
-        class="ms-1 btn fw-bold rounded-pill px-4 py-2 border border-2 border-dark"
-        style="background-color:#fff; color:#111;"
-        onmouseover="this.style.backgroundColor='#111'; this.style.color='#fff';"
-        onmouseout="this.style.backgroundColor='#fff'; this.style.color='#111';">
-        Dashboard
-        <i class="fa-solid fa-gauge"></i>
-    </a>
 @endif
 
     </div>

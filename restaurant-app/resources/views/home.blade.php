@@ -154,7 +154,7 @@ url('/images/main.jpg') center/cover no-repeat;">
 
         <div class="d-flex justify-content-between">
           <span>Monday – Sunday</span>
-          <span>11:00 AM – 10:00 PM</span>
+          <span>7:00 AM – 8:00 PM</span>
         </div>
       </div>
 
