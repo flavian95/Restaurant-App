@@ -25,10 +25,10 @@ class DashboardController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:user,email,' . Auth::id(),
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:50',
-            'address' => 'required|string|max:255',
+            'email' => 'required|email|max:150|unique:user,email,' . Auth::id(),
+            'name' => 'required|min:3|max:150|regex:/^[a-zA-Z\s]+$/',
+            'phone' => 'required|digits:10',
+            'address'  => 'required|string|min:6|max:255|regex:/\s+/',
             'current_password' => 'nullable|string',
             'new_password' => 'nullable|string|min:6|confirmed',
         ]);

@@ -83,7 +83,7 @@
           <div class="card-header">
             Order #{{ $loop->iteration }} — 
             Type: {{ $order->order_type }} — 
-            Created at: {{ \Carbon\Carbon::parse($order->created_at)->timezone('America/New_York')->format('g:i A') }}
+            Created at: {{ \Carbon\Carbon::parse($order->created_at)->timezone('Europe/Bucharest')->format('g:i A') }}
           </div>
 
           <ul class="list-group list-group-flush">
