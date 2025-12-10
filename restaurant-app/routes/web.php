@@ -57,6 +57,10 @@ Route::get('/cart/count', function () {
     ]);
 });
 
-Route::post('/order/place', [OrderController::class, 'place'])
-    ->middleware('auth')
-    ->name('order.place');
+ Route::post('/order/place', [OrderController::class, 'place'])
+     ->middleware('auth')
+     ->name('order.place');
+
+Route::get('/order/success/{order}', [OrderController::class, 'success'])
+     ->middleware('auth')
+     ->name('order.success');

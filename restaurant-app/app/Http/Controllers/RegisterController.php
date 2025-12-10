@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\User_Profile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -19,15 +20,22 @@ class RegisterController extends Controller
     {
         $request->validate([
             'email' => 'required|email|max:150|unique:user,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => [
+                       'required',
+                       'confirmed',
+                        Password::min(6)
+                        ->mixedCase()  
+                        ->numbers()    
+                        ->symbols(), 
+            ],
             'name' => 'required|min:3|max:150|regex:/^[a-zA-Z\s]+$/',
             'phone' => 'required|digits:10',
-            'address'  => 'required|string|min:6|max:255|regex:/\s+/'
+            'address'  => 'required|string|min:6|max:255'
         ]);
 
         $user = User::create([
             'email' => $request->email,
-            'password_hash' => Hash::make($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
          User_Profile::create([

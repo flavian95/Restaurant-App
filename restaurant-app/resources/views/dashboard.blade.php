@@ -31,7 +31,7 @@
         @csrf
 
         <div class="mb-3">
-            <label>Email</label>
+            <label class="">Email</label>
             <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
         </div>
 
@@ -83,6 +83,7 @@
           <div class="card-header">
             Order #{{ $loop->iteration }} — 
             Type: {{ $order->order_type }} — 
+            Total: <strong>{{$order->total_price }} USD</strong> —
             Created at: {{ \Carbon\Carbon::parse($order->created_at)->timezone('Europe/Bucharest')->format('g:i A') }}
           </div>
 

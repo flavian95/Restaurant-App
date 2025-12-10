@@ -30,13 +30,12 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
     })
     .then(res => res.json())
     .then(data => {
-        if (data.success) {
-            alert('Order placed successfully!');
-            window.location.href = '/menu';
-        } else {
-            alert(data.message);
-        }
-    });
+    if (data.success) {
+        window.location.href = data.redirect_url;
+    } else {
+        alert(data.message);
+    }
+});
 });
 }
 

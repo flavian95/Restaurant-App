@@ -13,24 +13,25 @@ class LoginController extends Controller
     {
         return view('login'); 
     }
+    
+    public function perform(Request $request){
 
-    public function perform(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+
+    if (!Auth::attempt($credentials)) {
+        return back()->withErrors([
+            'email' => 'Invalid email or password'
         ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password_hash)) {
-            return back()->withErrors(['email' => 'Invalid email or password']);
-        }
-
-        Auth::login($user);
-
-        return redirect('/menu');
     }
+
+    $request->session()->regenerate();
+
+    return redirect('/menu');
+}
+
 
     public function logout()
     {

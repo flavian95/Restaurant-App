@@ -20,15 +20,16 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // public function orderItems()
-    // {
-    //     return $this->hasMany(OrderItem::class, 'order_id');
-    // }
-
     public function items()
     {
         return $this->belongsToMany(Item::class, 'order_items', 'order_id', 'item_id')
-                    // ->using(OrderItem::class)
                     ->withPivot('quantity');
     }
+
+    public function getTotalPriceAttribute()
+{
+    return $this->items->sum(function ($item) {
+        return $item->price * $item->pivot->quantity;
+    });
+}
 }

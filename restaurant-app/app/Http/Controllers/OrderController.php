@@ -12,6 +12,7 @@ use App\Models\Item;
 
 class OrderController extends Controller
 {
+
     public function place(Request $request)
     {
         $request->validate([
@@ -21,10 +22,7 @@ class OrderController extends Controller
         $cart = session('cart', []);
 
         if (empty($cart)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Cart is empty'
-            ], 400);
+            return redirect()->back()->with('error', 'Cart is empty');
         }
 
         DB::beginTransaction();
@@ -46,9 +44,9 @@ class OrderController extends Controller
             DB::commit();
 
             return response()->json([
-                'success' => true,
-                'order_id' => $order->id
-            ]);
+               'success' => true,
+               'redirect_url' => route('order.success', ['order' => $order->id])
+        ]);
 
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -59,6 +57,11 @@ class OrderController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function success(Order $order)
+    {
+        return view('success', compact('order'));
     }
 }
 
